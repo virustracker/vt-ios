@@ -14,6 +14,9 @@
 #import "GeneratedToken.h"
 #import "ProximityCommunicationController.h"
 #import "VirusRESTClient.h"
+#import "ProximityEvent.h"
+#import "NSObject+Api.h"
+#import "NSDate+Api.h"
 
 @interface MainViewController ()
 
@@ -35,7 +38,34 @@
     self.nativeWeb = [[NativeWeb alloc] init];
     [self.nativeWeb setupForViewController:self withUrl:url];
     self.nativeWeb.webCallback = ^(NativeWeb * _Nonnull object, NWMethod type, NSString * _Nonnull message) {
-        
+        if (type == NWMethodGetProximityEvents) {
+            NSLog(@"Get proximity events %@", message);
+            
+            // TODO: temp fake events
+            NSMutableArray *fakeList = [NSMutableArray array];
+            for (int i=0; i<5; i++) {
+                ProximityEvent *e1 = [[ProximityEvent alloc] init];
+                e1.distanceType = i % 2;
+                e1.timestampMs = i*10;
+                e1.durationMs = i*3;
+                e1.infectionState = i % 2;
+                e1.isConfidential = i % 2;
+                NSDictionary *e1Dictionary = [e1 getDisctionary];
+                [fakeList addObject:e1Dictionary];
+            }
+            
+            NSString *listJSON = [fakeList jsonString];
+            [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackProximityEventList('%@')", listJSON]];
+        }
+        else if (type == NWMethodAddInfectionRequest) {
+            NSLog(@"Add infection request %@", message);
+            [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackInfectionRequest(%d)", 1]];
+        }
+        else if (type == NWMethodGetUserSettings) {
+            NSDictionary *hardcodedSettings = @{@"should_share_data": @1, @"is_marked_as_infected": @1};
+            NSString *settingsJson = [hardcodedSettings jsonString];
+            [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackUserSettings('%@')", settingsJson]];
+        }
     };
     
     // Local communication

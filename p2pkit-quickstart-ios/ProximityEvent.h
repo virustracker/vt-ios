@@ -16,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property long timestampMs;
 @property long durationMs;
 @property int infectionState;
-@property BOOL *isConfidential;
+@property BOOL isConfidential;
+
+- (NSDictionary *)getDisctionary;
 
 @end
 

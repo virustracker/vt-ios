@@ -54,6 +54,8 @@
 		84D993CD2430D2AD0090D109 /* VirusRESTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993CC2430D2AD0090D109 /* VirusRESTClient.m */; };
 		84D993D02430D2E70090D109 /* RESTToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993CF2430D2E70090D109 /* RESTToken.m */; };
 		84D993D32430D7510090D109 /* ProximityEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993D22430D7510090D109 /* ProximityEvent.m */; };
+		84D993D62430DD980090D109 /* NSDate+Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993D42430DD980090D109 /* NSDate+Api.m */; };
+		84D993D82430DDA50090D109 /* NSObject+Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993D72430DDA50090D109 /* NSObject+Api.m */; };
 		A87A00261BECD4FF0011F8A1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A87A00251BECD4FF0011F8A1 /* libicucore.tbd */; };
 		A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */; };
 		A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C71D701B83234200D32001 /* NearbyPeersViewController.m */; };
@@ -151,6 +153,10 @@
 		84D993CF2430D2E70090D109 /* RESTToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESTToken.m; sourceTree = "<group>"; };
 		84D993D12430D7510090D109 /* ProximityEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProximityEvent.h; sourceTree = "<group>"; };
 		84D993D22430D7510090D109 /* ProximityEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityEvent.m; sourceTree = "<group>"; };
+		84D993D42430DD980090D109 /* NSDate+Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Api.m"; sourceTree = "<group>"; };
+		84D993D52430DD980090D109 /* NSObject+Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Api.h"; sourceTree = "<group>"; };
+		84D993D72430DDA50090D109 /* NSObject+Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Api.m"; sourceTree = "<group>"; };
+		84D993D92430DDB50090D109 /* NSDate+Api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Api.h"; sourceTree = "<group>"; };
 		A80F92F81B97197400DC0756 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A87A00251BECD4FF0011F8A1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel_bg_transparent@2x.png"; sourceTree = "<group>"; };
@@ -374,6 +380,10 @@
 				84D993A5242FA3590090D109 /* CryptoHelper.m */,
 				84D993B92430AF010090D109 /* ProximityCommunicationController.h */,
 				84D993BA2430AF010090D109 /* ProximityCommunicationController.m */,
+				84D993D52430DD980090D109 /* NSObject+Api.h */,
+				84D993D72430DDA50090D109 /* NSObject+Api.m */,
+				84D993D92430DDB50090D109 /* NSDate+Api.h */,
+				84D993D42430DD980090D109 /* NSDate+Api.m */,
 			);
 			name = Logic;
 			sourceTree = "<group>";
@@ -642,6 +652,7 @@
 				A8C71D971B8326C300D32001 /* JCWheelView.m in Sources */,
 				84D993B42430051E0090D109 /* GeneratedToken.m in Sources */,
 				84D9939B242F94150090D109 /* BCScannerView.m in Sources */,
+				84D993D82430DDA50090D109 /* NSObject+Api.m in Sources */,
 				84D9939E242F94150090D109 /* NativeWeb.m in Sources */,
 				84D993BB2430AF010090D109 /* ProximityCommunicationController.m in Sources */,
 				1AB6E29F1E4A23EE00F9A473 /* ConsoleViewControlleriOS.m in Sources */,
@@ -651,6 +662,7 @@
 				3C0DDDD41CC678DA0056B7BF /* P2PKitController.m in Sources */,
 				84D99399242F94150090D109 /* UIView+Api.m in Sources */,
 				A8C71D741B83236500D32001 /* ColorPickerWheelViewController.m in Sources */,
+				84D993D62430DD980090D109 /* NSDate+Api.m in Sources */,
 				84D9939C242F94150090D109 /* BCScannerDelegate.m in Sources */,
 				A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */,
 				A8C71D961B8326C300D32001 /* JCWheelItem.m in Sources */,

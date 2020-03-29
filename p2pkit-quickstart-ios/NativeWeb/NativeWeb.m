@@ -54,6 +54,7 @@
 }
 
 - (void)webAppendJSCode:(NSString *)code {
+    NSLog(@"Send to webview: %@", code);
     [self.webView evaluateJavaScript:code completionHandler:^(id _Nullable object, NSError * _Nullable error) {
         
     }];
