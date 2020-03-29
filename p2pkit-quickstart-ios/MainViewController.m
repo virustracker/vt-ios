@@ -13,11 +13,13 @@
 #import "DiscoveredToken.h"
 #import "GeneratedToken.h"
 #import "ProximityCommunicationController.h"
+#import "VirusRESTClient.h"
 
 @interface MainViewController ()
 
 @property NativeWeb *nativeWeb;
 @property ProximityCommunicationController *communictionController;
+@property VirusRESTClient *restClient;
 
 @end
 
@@ -50,6 +52,11 @@
     };
     
     [self changeTokenIfNeeded];
+    
+    self.restClient = [[VirusRESTClient alloc] init];
+    [self.restClient getInfectedTokenList:^(NSArray<RESTToken *> * _Nonnull tokenList) {
+        NSLog(@"Infected token list: %@", tokenList); // TODO: convert them to ProximityEvent list and store
+    }];
 }
 
 #pragma mark - Logic

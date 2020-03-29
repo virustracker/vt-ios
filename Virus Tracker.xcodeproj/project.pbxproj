@@ -49,7 +49,11 @@
 		84D993B42430051E0090D109 /* GeneratedToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993B32430051E0090D109 /* GeneratedToken.m */; };
 		84D993BB2430AF010090D109 /* ProximityCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993BA2430AF010090D109 /* ProximityCommunicationController.m */; };
 		84D993BD2430BC0C0090D109 /* P2PKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D993BC2430BC0C0090D109 /* P2PKit.framework */; };
-		84D993C02430BD580090D109 /* RESTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993BF2430BD580090D109 /* RESTClient.m */; };
+		84D993C62430C7560090D109 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993C42430C7560090D109 /* Reachability.m */; };
+		84D993C92430CAAE0090D109 /* RESTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993C82430CAAE0090D109 /* RESTClient.m */; };
+		84D993CD2430D2AD0090D109 /* VirusRESTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993CC2430D2AD0090D109 /* VirusRESTClient.m */; };
+		84D993D02430D2E70090D109 /* RESTToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993CF2430D2E70090D109 /* RESTToken.m */; };
+		84D993D32430D7510090D109 /* ProximityEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D993D22430D7510090D109 /* ProximityEvent.m */; };
 		A87A00261BECD4FF0011F8A1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A87A00251BECD4FF0011F8A1 /* libicucore.tbd */; };
 		A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */; };
 		A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C71D701B83234200D32001 /* NearbyPeersViewController.m */; };
@@ -137,8 +141,16 @@
 		84D993B92430AF010090D109 /* ProximityCommunicationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProximityCommunicationController.h; sourceTree = "<group>"; };
 		84D993BA2430AF010090D109 /* ProximityCommunicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityCommunicationController.m; sourceTree = "<group>"; };
 		84D993BC2430BC0C0090D109 /* P2PKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = P2PKit.framework; sourceTree = "<group>"; };
-		84D993BE2430BD580090D109 /* RESTClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESTClient.h; sourceTree = "<group>"; };
-		84D993BF2430BD580090D109 /* RESTClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESTClient.m; sourceTree = "<group>"; };
+		84D993C42430C7560090D109 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		84D993C52430C7560090D109 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		84D993C72430CAAE0090D109 /* RESTClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESTClient.h; sourceTree = "<group>"; };
+		84D993C82430CAAE0090D109 /* RESTClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESTClient.m; sourceTree = "<group>"; };
+		84D993CB2430D2AD0090D109 /* VirusRESTClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirusRESTClient.h; sourceTree = "<group>"; };
+		84D993CC2430D2AD0090D109 /* VirusRESTClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VirusRESTClient.m; sourceTree = "<group>"; };
+		84D993CE2430D2E70090D109 /* RESTToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RESTToken.h; sourceTree = "<group>"; };
+		84D993CF2430D2E70090D109 /* RESTToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RESTToken.m; sourceTree = "<group>"; };
+		84D993D12430D7510090D109 /* ProximityEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProximityEvent.h; sourceTree = "<group>"; };
+		84D993D22430D7510090D109 /* ProximityEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityEvent.m; sourceTree = "<group>"; };
 		A80F92F81B97197400DC0756 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A87A00251BECD4FF0011F8A1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel_bg_transparent@2x.png"; sourceTree = "<group>"; };
@@ -340,6 +352,8 @@
 				84D993B0243005110090D109 /* DiscoveredToken.m */,
 				84D993B22430051E0090D109 /* GeneratedToken.h */,
 				84D993B32430051E0090D109 /* GeneratedToken.m */,
+				84D993D12430D7510090D109 /* ProximityEvent.h */,
+				84D993D22430D7510090D109 /* ProximityEvent.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -360,10 +374,23 @@
 				84D993A5242FA3590090D109 /* CryptoHelper.m */,
 				84D993B92430AF010090D109 /* ProximityCommunicationController.h */,
 				84D993BA2430AF010090D109 /* ProximityCommunicationController.m */,
-				84D993BE2430BD580090D109 /* RESTClient.h */,
-				84D993BF2430BD580090D109 /* RESTClient.m */,
 			);
 			name = Logic;
+			sourceTree = "<group>";
+		};
+		84D993CA2430D2880090D109 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				84D993C52430C7560090D109 /* Reachability.h */,
+				84D993C42430C7560090D109 /* Reachability.m */,
+				84D993C72430CAAE0090D109 /* RESTClient.h */,
+				84D993C82430CAAE0090D109 /* RESTClient.m */,
+				84D993CB2430D2AD0090D109 /* VirusRESTClient.h */,
+				84D993CC2430D2AD0090D109 /* VirusRESTClient.m */,
+				84D993CE2430D2E70090D109 /* RESTToken.h */,
+				84D993CF2430D2E70090D109 /* RESTToken.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		A8C71D751B83261E00D32001 /* 3rdParty */ = {
@@ -459,6 +486,7 @@
 				D2AA9A0D1ACC2F3D008C165A /* AppDelegate.m */,
 				84D9939F242F942E0090D109 /* MainViewController.h */,
 				84D993A0242F942E0090D109 /* MainViewController.m */,
+				84D993CA2430D2880090D109 /* API */,
 				84D993B82430AE7C0090D109 /* Logic */,
 				84D993AE243004ED0090D109 /* Model */,
 				84D993B52430AD780090D109 /* Library */,
@@ -610,6 +638,7 @@
 			files = (
 				84D993A1242F942E0090D109 /* MainViewController.m in Sources */,
 				D2AA9A111ACC2F3D008C165A /* ConsoleViewController.m in Sources */,
+				84D993CD2430D2AD0090D109 /* VirusRESTClient.m in Sources */,
 				A8C71D971B8326C300D32001 /* JCWheelView.m in Sources */,
 				84D993B42430051E0090D109 /* GeneratedToken.m in Sources */,
 				84D9939B242F94150090D109 /* BCScannerView.m in Sources */,
@@ -617,20 +646,23 @@
 				84D993BB2430AF010090D109 /* ProximityCommunicationController.m in Sources */,
 				1AB6E29F1E4A23EE00F9A473 /* ConsoleViewControlleriOS.m in Sources */,
 				A8C71D801B83264D00D32001 /* DLGraphScene.m in Sources */,
+				84D993D02430D2E70090D109 /* RESTToken.m in Sources */,
+				84D993C62430C7560090D109 /* Reachability.m in Sources */,
 				3C0DDDD41CC678DA0056B7BF /* P2PKitController.m in Sources */,
 				84D99399242F94150090D109 /* UIView+Api.m in Sources */,
 				A8C71D741B83236500D32001 /* ColorPickerWheelViewController.m in Sources */,
 				84D9939C242F94150090D109 /* BCScannerDelegate.m in Sources */,
 				A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */,
 				A8C71D961B8326C300D32001 /* JCWheelItem.m in Sources */,
+				84D993D32430D7510090D109 /* ProximityEvent.m in Sources */,
 				D2AA9A0E1ACC2F3D008C165A /* AppDelegate.m in Sources */,
 				A8C71D7E1B83264D00D32001 /* DLEdge.m in Sources */,
 				84D993B1243005110090D109 /* DiscoveredToken.m in Sources */,
 				1AB6E29C1E4A11DD00F9A473 /* NearbyPeersViewControlleriOS.m in Sources */,
 				84D9939D242F94150090D109 /* BCVideoPreviewView.m in Sources */,
-				84D993C02430BD580090D109 /* RESTClient.m in Sources */,
 				A8C71D941B8326C300D32001 /* JCRotateGestureRecognizer.m in Sources */,
 				84D993A6242FA3590090D109 /* CryptoHelper.m in Sources */,
+				84D993C92430CAAE0090D109 /* RESTClient.m in Sources */,
 				A8C71D7F1B83264D00D32001 /* DLForcedGraphView.m in Sources */,
 				A8C71D951B8326C300D32001 /* JCWheelCenterView.m in Sources */,
 				D2AA9A0B1ACC2F3D008C165A /* main.m in Sources */,
@@ -831,7 +863,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/p2pkit-quickstart-ios/Info-iOS.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = ch.uepaa.quickstart;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.virustracker.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -858,7 +890,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/p2pkit-quickstart-ios/Info-iOS.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = ch.uepaa.quickstart;
+				PRODUCT_BUNDLE_IDENTIFIER = ch.virustracker.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
