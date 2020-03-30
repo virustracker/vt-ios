@@ -40,7 +40,7 @@
     self.nativeWeb = [[NativeWeb alloc] init];
     [self.nativeWeb setupForViewController:self withUrl:url];
     self.nativeWeb.webCallback = ^(NativeWeb * _Nonnull object, NWMethod type, NSString * _Nonnull message) {
-        if (type == NWMethodGetProximityEvents) {
+        if (type == NWMethodGetProximityEvents || type == NWMethodSyncData) {
             NSLog(@"Get proximity events %@", message);
             [weakSelf loadDataFromRestAndGenerateProximityEventsWithCompletion:^{
                 [weakSelf pushDataToWebView];

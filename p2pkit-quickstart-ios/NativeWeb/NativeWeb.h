@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, NWMethod) {
     NWMethodAddInfectionRequest = 16,
     NWMethodGetUserSettings = 17,
     NWMethodSetUserSettings = 18,
+    NWMethodSyncData = 19
 };
 
 typedef NS_ENUM(NSUInteger, NWScanOption) {
