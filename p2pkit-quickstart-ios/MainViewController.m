@@ -12,7 +12,7 @@
 #import "CryptoHelper.h"
 #import "DiscoveredToken.h"
 #import "GeneratedToken.h"
-#import "ProximityCommunicationController.h"
+#import "AltBeacon/AltBeaconController.h"
 #import "VirusRESTClient.h"
 #import "ProximityEvent.h"
 #import "NSObject+Api.h"
@@ -21,7 +21,7 @@
 @interface MainViewController ()
 
 @property NativeWeb *nativeWeb;
-@property ProximityCommunicationController *communictionController;
+@property AltBeaconController *communictionController;
 @property VirusRESTClient *restClient;
 
 @end
@@ -70,9 +70,10 @@
     
     // Local communication
     __weak MainViewController *weakSelf = self;
-    self.communictionController = [[ProximityCommunicationController alloc] init];
+    self.communictionController = [[AltBeaconController alloc] init];
     [self.communictionController configure];
     self.communictionController.peerDiscoveredCallback = ^(NSString * _Nonnull token) {
+        NSLog(@"Peer discovered %@", token);
         [weakSelf storeDiscoveredToken:token];
         [weakSelf changeTokenIfNeeded];
     };
@@ -80,12 +81,16 @@
         [weakSelf storeDiscoveredToken:token];
         [weakSelf changeTokenIfNeeded];
     };
+    NSString *currentDate = [[NSDate date] timestampString];
+    NSString *preimage = [CryptoHelper getSha256:currentDate];
+    NSString *generatedToken = [MainViewController getDeviceToken:preimage];
+    [self.communictionController startOrUpdateWithToken:generatedToken];
     
     [self changeTokenIfNeeded];
     
     self.restClient = [[VirusRESTClient alloc] init];
     [self.restClient getInfectedTokenList:^(NSArray<RESTToken *> * _Nonnull tokenList) {
-        NSLog(@"Infected token list: %@", tokenList); // TODO: convert them to ProximityEvent list and store
+//        NSLog(@"Infected token list: %@", tokenList); // TODO: convert them to ProximityEvent list and store
     }];
 }
 
@@ -94,11 +99,12 @@
 + (NSString *)getDeviceToken:(NSString *)preimage {
     NSString *key = [NSString stringWithFormat:@"VIRUSTRACKER||%@", preimage];
     NSString *hash = [CryptoHelper getSha256:key];
+    hash = [hash substringToIndex:36];
     return hash;
 }
 
 - (void)storeDiscoveredToken:(NSString *)token {
-    NSLog(@"Discovered Count %d", [[DiscoveredToken allObjects] count]);
+    NSLog(@"Discovered Count %lu", [[DiscoveredToken allObjects] count]);
     DiscoveredToken *dt = [[DiscoveredToken alloc] init];
     dt.startDate = [NSDate date];
     dt.token = token;
@@ -109,12 +115,12 @@
 }
 
 - (void)changeTokenIfNeeded {
-    NSLog(@"Generated Count %d", [[GeneratedToken allObjects] count]);
+    NSUInteger generatedCount = [[GeneratedToken allObjects] count];
+    NSLog(@"Generated Count %lu", generatedCount);
     GeneratedToken *token = [[GeneratedToken allObjects] lastObject];
     NSDate *currentDate = [NSDate date];
     NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:token.date];
-    NSLog(@"%@ - %@ - %f", currentDate, token, timeInterval);
-    if (timeInterval > 60) {
+    if (timeInterval > 60 || generatedCount == 0) {
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";

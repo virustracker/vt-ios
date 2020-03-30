@@ -20,7 +20,8 @@ typedef NS_ENUM(NSUInteger, NWMethod) {
     NWMethodGetHash = 14,
     NWMethodGetProximityEvents = 15,
     NWMethodAddInfectionRequest = 16,
-    NWMethodGetUserSettings = 17
+    NWMethodGetUserSettings = 17,
+    NWMethodSetUserSettings = 18,
 };
 
 typedef NS_ENUM(NSUInteger, NWScanOption) {
