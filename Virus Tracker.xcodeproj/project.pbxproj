@@ -31,7 +31,6 @@
 		3C0DDE291CC6854D0056B7BF /* Mac.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0DDDD01CC678430056B7BF /* Mac.storyboard */; };
 		3C3D94D81E436F2E009FFE7D /* P2PKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3D94D71E436F2E009FFE7D /* P2PKit.framework */; };
 		3CAE8DFA1CC7B569008D288C /* iOS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2AA9A121ACC2F3D008C165A /* iOS.storyboard */; };
-		3CAE8DFB1CC7B56D008D288C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8C036D71B98816E0042912E /* LaunchScreen.xib */; };
 		3CAE8DFC1CC7B576008D288C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2AA9A151ACC2F3D008C165A /* Images.xcassets */; };
 		84D99399242F94150090D109 /* UIView+Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9938B242F94150090D109 /* UIView+Api.m */; };
 		84D9939A242F94150090D109 /* hud.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D9938F242F94150090D109 /* hud.png */; };
@@ -77,6 +76,8 @@
 		84D9941D243200AD0090D109 /* AltBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D99405243200AD0090D109 /* AltBeacon.m */; };
 		84D9941E243200AD0090D109 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D99407243200AD0090D109 /* Reachability.m */; };
 		84D99421243200F90090D109 /* AltBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D99420243200F90090D109 /* AltBeaconController.m */; };
+		84D99425243226640090D109 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D99424243226640090D109 /* LaunchScreen.storyboard */; };
+		84D99428243226950090D109 /* logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D99427243226940090D109 /* logo_small.png */; };
 		A87A00261BECD4FF0011F8A1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A87A00251BECD4FF0011F8A1 /* libicucore.tbd */; };
 		A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */; };
 		A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C71D701B83234200D32001 /* NearbyPeersViewController.m */; };
@@ -222,10 +223,11 @@
 		84D99409243200AD0090D109 /* AltBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltBeacon.h; sourceTree = "<group>"; };
 		84D9941F243200F90090D109 /* AltBeaconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltBeaconController.h; sourceTree = "<group>"; };
 		84D99420243200F90090D109 /* AltBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltBeaconController.m; sourceTree = "<group>"; };
+		84D99424243226640090D109 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84D99427243226940090D109 /* logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_small.png; sourceTree = "<group>"; };
 		A80F92F81B97197400DC0756 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A87A00251BECD4FF0011F8A1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel_bg_transparent@2x.png"; sourceTree = "<group>"; };
-		A8C036D81B98816E0042912E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A8C71D6F1B83234200D32001 /* NearbyPeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPeersViewController.h; sourceTree = "<group>"; };
 		A8C71D701B83234200D32001 /* NearbyPeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPeersViewController.m; sourceTree = "<group>"; };
 		A8C71D721B83236500D32001 /* ColorPickerWheelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorPickerWheelViewController.h; path = iOS/ColorPickerWheelViewController.h; sourceTree = "<group>"; };
@@ -318,7 +320,6 @@
 				1AB6E29E1E4A23EE00F9A473 /* ConsoleViewControlleriOS.m */,
 				A8C71D721B83236500D32001 /* ColorPickerWheelViewController.h */,
 				A8C71D731B83236500D32001 /* ColorPickerWheelViewController.m */,
-				D2AA9A091ACC2F3D008C165A /* Info-iOS.plist */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -544,6 +545,14 @@
 			path = 3rdParty;
 			sourceTree = "<group>";
 		};
+		84D99426243226820090D109 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				84D99427243226940090D109 /* logo_small.png */,
+			);
+			name = Asset;
+			sourceTree = "<group>";
+		};
 		A8C71D751B83261E00D32001 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,7 +641,6 @@
 		D2AA9A071ACC2F3D008C165A /* p2pkit-quickstart-ios */ = {
 			isa = PBXGroup;
 			children = (
-				D2AA9A121ACC2F3D008C165A /* iOS.storyboard */,
 				D2AA9A0C1ACC2F3D008C165A /* AppDelegate.h */,
 				D2AA9A0D1ACC2F3D008C165A /* AppDelegate.m */,
 				84D9939F242F942E0090D109 /* MainViewController.h */,
@@ -641,6 +649,7 @@
 				84D993B82430AE7C0090D109 /* Logic */,
 				84D993AE243004ED0090D109 /* Model */,
 				84D993B52430AD780090D109 /* Library */,
+				84D99426243226820090D109 /* Asset */,
 				D2AA9A151ACC2F3D008C165A /* Images.xcassets */,
 				D2AA9A081ACC2F3D008C165A /* Supporting Files */,
 			);
@@ -650,7 +659,9 @@
 		D2AA9A081ACC2F3D008C165A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A8C036D71B98816E0042912E /* LaunchScreen.xib */,
+				D2AA9A121ACC2F3D008C165A /* iOS.storyboard */,
+				84D99424243226640090D109 /* LaunchScreen.storyboard */,
+				D2AA9A091ACC2F3D008C165A /* Info-iOS.plist */,
 				D2AA9A0A1ACC2F3D008C165A /* main.m */,
 				A80F92F81B97197400DC0756 /* PrefixHeader.pch */,
 			);
@@ -753,10 +764,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CAE8DFB1CC7B56D008D288C /* LaunchScreen.xib in Resources */,
+				84D99428243226950090D109 /* logo_small.png in Resources */,
 				3CAE8DFA1CC7B569008D288C /* iOS.storyboard in Resources */,
 				A8C71D911B8326C300D32001 /* wheel_arrow@2x.png in Resources */,
 				A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */,
+				84D99425243226640090D109 /* LaunchScreen.storyboard in Resources */,
 				D2AA9A161ACC2F3D008C165A /* Images.xcassets in Resources */,
 				84D9939A242F94150090D109 /* hud.png in Resources */,
 			);
@@ -846,14 +858,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A8C036D71B98816E0042912E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A8C036D81B98816E0042912E /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		D2AA9A121ACC2F3D008C165A /* iOS.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
