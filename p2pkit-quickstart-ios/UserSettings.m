@@ -21,13 +21,13 @@
 - (void)setWith:(NSDictionary *)dictionary {
     if (dictionary) {
         if ([dictionary objectForKey:@"should_share_data"]) {
-            self.shouldSyncData = dictionary[@"should_share_data"];
+            self.shouldSyncData = [dictionary[@"should_share_data"] boolValue];
         }
         if ([dictionary objectForKey:@"is_marked_as_infected"]) {
-            self.isMarkedAsInfected = dictionary[@"is_marked_as_infected"];
+            self.isMarkedAsInfected = [dictionary[@"is_marked_as_infected"] boolValue];
         }
         if ([dictionary objectForKey:@"did_finish_onboarding"]) {
-            self.didFinishOnboarding = dictionary[@"did_finish_onboarding"];
+            self.didFinishOnboarding = [dictionary[@"did_finish_onboarding"] boolValue];
         }
     }
 }

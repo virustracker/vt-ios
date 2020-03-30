@@ -52,6 +52,7 @@
             [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackInfectionRequest(%d)", 1]];
         }
         else if (type == NWMethodGetUserSettings) {
+            NSLog(@"Get user settings");
             UserSettings *settings = [[UserSettings allObjects] firstObject];
             if (settings == nil) {
                 settings = [[UserSettings alloc] init];
@@ -75,6 +76,7 @@
             }
             if (message) {
                 NSDictionary *settinsDictionary = [message dictionaryFromJSONString];
+                NSLog(@"Settings to save %@", settinsDictionary);
                 if (settinsDictionary) {
                     RLMRealm *realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
