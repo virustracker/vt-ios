@@ -10,7 +10,7 @@
 
 @implementation ProximityEvent
 
-- (NSDictionary *)getDisctionary {
+- (NSDictionary *)getDictionary {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:@(self.distanceType) forKey:@"distance_type"];
     [dictionary setObject:@(self.timestampMs) forKey:@"timestamp"];

@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    __weak MainViewController *weakSelf = self;
+    
     // Webview wrapper
     NSURL *url = [NSURL URLWithString:@"https://polbyte.atthouse.pl/public/virus"];
     self.nativeWeb = [[NativeWeb alloc] init];
@@ -40,22 +42,9 @@
     self.nativeWeb.webCallback = ^(NativeWeb * _Nonnull object, NWMethod type, NSString * _Nonnull message) {
         if (type == NWMethodGetProximityEvents) {
             NSLog(@"Get proximity events %@", message);
-            
-            // TODO: temp fake events
-            NSMutableArray *fakeList = [NSMutableArray array];
-            for (int i=0; i<5; i++) {
-                ProximityEvent *e1 = [[ProximityEvent alloc] init];
-                e1.distanceType = i % 2;
-                e1.timestampMs = i*10;
-                e1.durationMs = i*3;
-                e1.infectionState = i % 2;
-                e1.isConfidential = i % 2;
-                NSDictionary *e1Dictionary = [e1 getDisctionary];
-                [fakeList addObject:e1Dictionary];
-            }
-            
-            NSString *listJSON = [fakeList jsonString];
-            [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackProximityEventList('%@')", listJSON]];
+            [weakSelf loadDataFromRestAndGenerateProximityEventsWithCompletion:^{
+                [weakSelf pushDataToWebView];
+            }];
         }
         else if (type == NWMethodAddInfectionRequest) {
             NSLog(@"Add infection request %@", message);
@@ -69,16 +58,21 @@
     };
     
     // Local communication
-    __weak MainViewController *weakSelf = self;
     self.communictionController = [[AltBeaconController alloc] init];
     [self.communictionController configure];
-    self.communictionController.peerDiscoveredCallback = ^(NSString * _Nonnull token) {
-        NSLog(@"Peer discovered %@", token);
-        [weakSelf storeDiscoveredToken:token];
-        [weakSelf changeTokenIfNeeded];
+    self.communictionController.peerDiscoveredCallback = ^(NSString * _Nonnull token, NSUInteger distanceType) {
+        DiscoveredToken *existingToken = [[DiscoveredToken objectsWhere:@"token == %@", token] firstObject];
+        if (existingToken == nil) {
+            NSLog(@"Peer discovered %@", token);
+            [weakSelf storeDiscoveredToken:token andDistanceType:(int)distanceType];
+            [weakSelf changeTokenIfNeeded];
+            
+            [weakSelf loadDataFromRestAndGenerateProximityEventsWithCompletion:^{
+                [weakSelf pushDataToWebView];
+            }];
+        }
     };
     self.communictionController.peerLostCallback = ^(NSString * _Nonnull token) {
-        [weakSelf storeDiscoveredToken:token];
         [weakSelf changeTokenIfNeeded];
     };
     NSString *currentDate = [[NSDate date] timestampString];
@@ -89,9 +83,12 @@
     [self changeTokenIfNeeded];
     
     self.restClient = [[VirusRESTClient alloc] init];
-    [self.restClient getInfectedTokenList:^(NSArray<RESTToken *> * _Nonnull tokenList) {
-//        NSLog(@"Infected token list: %@", tokenList); // TODO: convert them to ProximityEvent list and store
-    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    
 }
 
 #pragma mark - Logic
@@ -103,11 +100,13 @@
     return hash;
 }
 
-- (void)storeDiscoveredToken:(NSString *)token {
+- (void)storeDiscoveredToken:(NSString *)token andDistanceType:(int)distanceType {
     NSLog(@"Discovered Count %lu", [[DiscoveredToken allObjects] count]);
     DiscoveredToken *dt = [[DiscoveredToken alloc] init];
-    dt.startDate = [NSDate date];
+    dt.timestamp = [[NSDate date] timeIntervalSince1970];
+    dt.duration = 0;
     dt.token = token;
+    dt.distanceType = distanceType;
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm transactionWithBlock:^{
         [realm addObject:dt];
@@ -120,7 +119,7 @@
     GeneratedToken *token = [[GeneratedToken allObjects] lastObject];
     NSDate *currentDate = [NSDate date];
     NSTimeInterval timeInterval = [currentDate timeIntervalSinceDate:token.date];
-    if (timeInterval > 60 || generatedCount == 0) {
+    if (timeInterval > 5* 60 || generatedCount == 0) {
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
@@ -140,6 +139,73 @@
             [realm addObject:dt];
         }];
     }
+}
+
+- (void)pushDataToWebView {
+    
+    // Events
+    NSMutableArray *plainList = [NSMutableArray array];
+    RLMResults *results = [ProximityEvent allObjects];
+    for (ProximityEvent *event in results) {
+        NSDictionary *eventDictionary = [event getDictionary];
+        [plainList addObject:eventDictionary];
+    }
+    
+    // Tokens
+    NSMutableDictionary *tokenMap = [NSMutableDictionary dictionary];
+    RLMResults *discoveredTokenList = [DiscoveredToken allObjects];
+    for (DiscoveredToken *discoveredToken in discoveredTokenList) {
+        NSString *tokenTimestamp = [[[NSDate dateWithTimeIntervalSince1970:discoveredToken.timestamp] dateWithoutTime] timestampString];
+        if ([tokenMap objectForKey:tokenTimestamp]) {
+            
+        } else {
+            tokenMap[tokenTimestamp] = @(0);
+        }
+        tokenMap[tokenTimestamp] = @([tokenMap[tokenTimestamp] integerValue]+1);
+    }
+    NSMutableArray *tokenList = [NSMutableArray array];
+    for (NSString *timestampString in tokenMap) {
+        NSDate *timestampDate = [NSDate dateFromString:timestampString];
+        NSNumber *timestamp = @([timestampDate timeIntervalSince1970]);
+        NSDictionary *item = @{@"timestamp":timestamp, @"count":tokenMap[timestampString]};
+        [tokenList addObject:item];
+    }
+    
+    NSLog(@"Push tokens %@, events %@", tokenList, plainList);
+    
+    NSString *listJSON = [@{@"tokens": tokenList, @"events": plainList} jsonString];
+    [self.nativeWeb webAppendJSCode:[NSString stringWithFormat:@"nw.callbackProximityEventList('%@')", listJSON]];
+}
+
+- (void)loadDataFromRestAndGenerateProximityEventsWithCompletion:(void(^)(void))completion {
+    [self.restClient getInfectedTokenList:^(NSArray<RESTToken *> * _Nonnull restTokenList) {
+        
+        NSMutableArray *eventList = [NSMutableArray array];
+        RLMResults *discoveredTokenList = [DiscoveredToken allObjects];
+        for (RESTToken *restToken in restTokenList) {
+            for (DiscoveredToken *discoveredToken in discoveredTokenList) {
+                if ([restToken.value isEqualToString:discoveredToken.token]) {
+                    ProximityEvent *event = [[ProximityEvent alloc] init];
+                    event.distanceType = discoveredToken.distanceType;
+                    event.timestampMs = discoveredToken.timestamp;
+                    [eventList addObject:event];
+                }
+            }
+        }
+        
+        NSLog(@"Store %lu events", eventList.count);
+        if (eventList.count > 0) {
+            
+        }
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm transactionWithBlock:^{
+            [realm addObjects:eventList];
+        }];
+        
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 @end

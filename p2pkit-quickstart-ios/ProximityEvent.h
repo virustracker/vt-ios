@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProximityEvent : NSObject
+@interface ProximityEvent : RLMObject
 
 @property int distanceType;
 @property long timestampMs;
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property int infectionState;
 @property BOOL isConfidential;
 
-- (NSDictionary *)getDisctionary;
+- (NSDictionary *)getDictionary;
 
 @end
 

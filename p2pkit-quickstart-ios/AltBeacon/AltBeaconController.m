@@ -228,11 +228,12 @@
 
     for(NSString *key in devices) {
         
+        NSNumber *range = [devices objectForKey:key];
+
         if (self.peerDiscoveredCallback) {
-            self.peerDiscoveredCallback(key);
+            self.peerDiscoveredCallback(key, range.intValue);
         }
         
-        NSNumber * range = [devices objectForKey:key];
         if (range.intValue == INDetectorRangeUnknown){
             if ([key  isEqualToString:kUuidBeaconOne]){
                 self.labelDisplayResultBeacon1.text = @"";

@@ -12,9 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DiscoveredToken : RLMObject
 
-@property NSDate *startDate;
-@property NSDate *stopDate;
+@property long timestamp;
+@property long duration;
 @property NSString *token;
+@property int distanceType;
 @property NSNumber<RLMBool> *isInfected;
 
 @end

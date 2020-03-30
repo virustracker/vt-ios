@@ -31,7 +31,7 @@
 
 @interface AltBeaconController : NSObject <AltBeaconDelegate>
 
-@property (copy) void (^peerDiscoveredCallback)(NSString *token);
+@property (copy) void (^peerDiscoveredCallback)(NSString *token, NSUInteger distanceType);
 @property (copy) void (^peerLostCallback)(NSString *token);
 
 - (void)configure;
