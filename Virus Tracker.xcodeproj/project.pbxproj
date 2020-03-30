@@ -79,6 +79,7 @@
 		84D99425243226640090D109 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D99424243226640090D109 /* LaunchScreen.storyboard */; };
 		84D99428243226950090D109 /* logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D99427243226940090D109 /* logo_small.png */; };
 		84D9942B24322F670090D109 /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9942A24322F670090D109 /* UserSettings.m */; };
+		84D99636243292AD0090D109 /* vt-app-ui in Resources */ = {isa = PBXBuildFile; fileRef = 84D99635243292AD0090D109 /* vt-app-ui */; };
 		A87A00261BECD4FF0011F8A1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A87A00251BECD4FF0011F8A1 /* libicucore.tbd */; };
 		A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */; };
 		A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C71D701B83234200D32001 /* NearbyPeersViewController.m */; };
@@ -228,6 +229,7 @@
 		84D99427243226940090D109 /* logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_small.png; sourceTree = "<group>"; };
 		84D9942924322F670090D109 /* UserSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
 		84D9942A24322F670090D109 /* UserSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
+		84D99635243292AD0090D109 /* vt-app-ui */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "vt-app-ui"; path = "../../vt-app-ui"; sourceTree = "<group>"; };
 		A80F92F81B97197400DC0756 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A87A00251BECD4FF0011F8A1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel_bg_transparent@2x.png"; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				D2AA9A0D1ACC2F3D008C165A /* AppDelegate.m */,
 				84D9939F242F942E0090D109 /* MainViewController.h */,
 				84D993A0242F942E0090D109 /* MainViewController.m */,
+				84D99635243292AD0090D109 /* vt-app-ui */,
 				84D993CA2430D2880090D109 /* API */,
 				84D993B82430AE7C0090D109 /* Logic */,
 				84D993AE243004ED0090D109 /* Model */,
@@ -773,6 +776,7 @@
 				3CAE8DFA1CC7B569008D288C /* iOS.storyboard in Resources */,
 				A8C71D911B8326C300D32001 /* wheel_arrow@2x.png in Resources */,
 				A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */,
+				84D99636243292AD0090D109 /* vt-app-ui in Resources */,
 				84D99425243226640090D109 /* LaunchScreen.storyboard in Resources */,
 				D2AA9A161ACC2F3D008C165A /* Images.xcassets in Resources */,
 				84D9939A242F94150090D109 /* hud.png in Resources */,

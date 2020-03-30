@@ -10,11 +10,12 @@
 #import "UIView+Api.h"
 #import "BCScanner/BCScannerView.h"
 
-@interface NativeWeb () <BCScannerViewDelegate, WKScriptMessageHandler, WKUIDelegate>
+@interface NativeWeb () <BCScannerViewDelegate, WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate>
 
 @property WKWebView *webView;
 @property UIViewController *viewController;
 @property BCScannerView *scannerView;
+@property UIActivityIndicatorView *activityIndicatorView;
 
 @property NWScanOption scanOption;
 @property (copy) void (^scanCallback)(NativeWeb *object, NSString *code);
@@ -34,9 +35,18 @@
     [controller addScriptMessageHandler:self name:@"NativeWeb"];
     config.userContentController = controller;
     
+    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicatorView.color = [UIColor colorWithRed:0 green:204.0/255.0 blue:168.0/255.0 alpha:1.0];
+    [viewController.view addSubview:self.activityIndicatorView];
+    [self.activityIndicatorView addConstraintsToCenterInSuperview];
+    [self.activityIndicatorView startAnimating];
+    
     self.webView = [[WKWebView alloc] initWithFrame:viewController.view.frame configuration:config];
     self.webView.scrollView.bounces = false;
     self.webView.UIDelegate = self;
+    self.webView.alpha = 0.0;
+    self.webView.navigationDelegate = self;
+    [self.webView.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
     [viewController.view addSubview:self.webView];
     [self.webView addConstraintsToFillSuperview];
     
@@ -49,8 +59,11 @@
     }
     self.webView.opaque = NO;
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-//    [self.webView loadFileURL:url allowingReadAccessToURL:url];
+    if ([url.absoluteString containsString:@"http"]) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    } else {
+        [self.webView loadFileURL:url allowingReadAccessToURL:url];
+    }
 }
 
 - (void)webAppendJSCode:(NSString *)code {
@@ -175,6 +188,15 @@
                                                           completionHandler();
                                                       }]];
     [self.viewController presentViewController:alertController animated:YES completion:^{}];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [self.activityIndicatorView stopAnimating];
+    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.webView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 @end

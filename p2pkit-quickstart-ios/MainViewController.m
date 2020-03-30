@@ -37,7 +37,8 @@
     __weak MainViewController *weakSelf = self;
     
     // Webview wrapper
-    NSURL *url = [NSURL URLWithString:@"https://polbyte.atthouse.pl/public/virus"];
+//    NSURL *url = [NSURL URLWithString:@"https://polbyte.atthouse.pl/public/virus"];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"vt-app-ui"]];
     self.nativeWeb = [[NativeWeb alloc] init];
     [self.nativeWeb setupForViewController:self withUrl:url];
     self.nativeWeb.webCallback = ^(NativeWeb * _Nonnull object, NWMethod type, NSString * _Nonnull message) {
