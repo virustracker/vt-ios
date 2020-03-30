@@ -70,6 +70,13 @@
             [weakSelf loadDataFromRestAndGenerateProximityEventsWithCompletion:^{
                 [weakSelf pushDataToWebView];
             }];
+        } else {
+            long currentTimestampMs = [[NSDate date] timeIntervalSince1970]*1000;
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            existingToken.duration = currentTimestampMs - existingToken.timestamp;
+            [realm commitWriteTransaction];
+//            NSLog(@"Update %@ duration %ld", existingToken.token, existingToken.duration);
         }
     };
     self.communictionController.peerLostCallback = ^(NSString * _Nonnull token) {
@@ -83,6 +90,10 @@
     [self changeTokenIfNeeded];
     
     self.restClient = [[VirusRESTClient alloc] init];
+    
+    [self loadDataFromRestAndGenerateProximityEventsWithCompletion:^{
+        [self pushDataToWebView];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -103,7 +114,7 @@
 - (void)storeDiscoveredToken:(NSString *)token andDistanceType:(int)distanceType {
     NSLog(@"Discovered Count %lu", [[DiscoveredToken allObjects] count]);
     DiscoveredToken *dt = [[DiscoveredToken alloc] init];
-    dt.timestamp = [[NSDate date] timeIntervalSince1970];
+    dt.timestamp = [[NSDate date] timeIntervalSince1970]*1000;
     dt.duration = 0;
     dt.token = token;
     dt.distanceType = distanceType;
@@ -155,7 +166,7 @@
     NSMutableDictionary *tokenMap = [NSMutableDictionary dictionary];
     RLMResults *discoveredTokenList = [DiscoveredToken allObjects];
     for (DiscoveredToken *discoveredToken in discoveredTokenList) {
-        NSString *tokenTimestamp = [[[NSDate dateWithTimeIntervalSince1970:discoveredToken.timestamp] dateWithoutTime] timestampString];
+        NSString *tokenTimestamp = [[[NSDate dateWithTimeIntervalSince1970:discoveredToken.timestamp/1000] dateWithoutTime] timestampString];
         if ([tokenMap objectForKey:tokenTimestamp]) {
             
         } else {
@@ -166,7 +177,7 @@
     NSMutableArray *tokenList = [NSMutableArray array];
     for (NSString *timestampString in tokenMap) {
         NSDate *timestampDate = [NSDate dateFromString:timestampString];
-        NSNumber *timestamp = @([timestampDate timeIntervalSince1970]);
+        NSNumber *timestamp = @([timestampDate timeIntervalSince1970]*1000);
         NSDictionary *item = @{@"timestamp":timestamp, @"count":tokenMap[timestampString]};
         [tokenList addObject:item];
     }
