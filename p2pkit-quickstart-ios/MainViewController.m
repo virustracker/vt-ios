@@ -15,6 +15,7 @@
 #import "AltBeacon/AltBeaconController.h"
 #import "VirusRESTClient.h"
 #import "ProximityEvent.h"
+#import "UserSettings.h"
 #import "NSObject+Api.h"
 #import "NSDate+Api.h"
 
@@ -51,9 +52,36 @@
             [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackInfectionRequest(%d)", 1]];
         }
         else if (type == NWMethodGetUserSettings) {
-            NSDictionary *hardcodedSettings = @{@"should_share_data": @1, @"is_marked_as_infected": @1};
-            NSString *settingsJson = [hardcodedSettings jsonString];
+            UserSettings *settings = [[UserSettings allObjects] firstObject];
+            if (settings == nil) {
+                settings = [[UserSettings alloc] init];
+                RLMRealm *realm = [RLMRealm defaultRealm];
+                [realm transactionWithBlock:^{
+                    [realm addObject:settings];
+                }];
+            }
+            NSDictionary *settinsDictionary = [settings getDictionary];
+            NSString *settingsJson = [settinsDictionary jsonString];
             [object webAppendJSCode:[NSString stringWithFormat:@"nw.callbackUserSettings('%@')", settingsJson]];
+        }
+        else if (type == NWMethodSetUserSettings) {
+            UserSettings *settings = [[UserSettings allObjects] firstObject];
+            if (settings == nil) {
+                settings = [[UserSettings alloc] init];
+                RLMRealm *realm = [RLMRealm defaultRealm];
+                [realm transactionWithBlock:^{
+                    [realm addObject:settings];
+                }];
+            }
+            if (message) {
+                NSDictionary *settinsDictionary = [message dictionaryFromJSONString];
+                if (settinsDictionary) {
+                    RLMRealm *realm = [RLMRealm defaultRealm];
+                    [realm beginWriteTransaction];
+                    [settings setWith:settinsDictionary];
+                    [realm commitWriteTransaction];
+                }
+            }
         }
     };
     
@@ -107,7 +135,6 @@
 + (NSString *)getDeviceToken:(NSString *)preimage {
     NSString *key = [NSString stringWithFormat:@"VIRUSTRACKER||%@", preimage];
     NSString *hash = [CryptoHelper getSha256:key];
-    hash = [hash substringToIndex:36];
     return hash;
 }
 

@@ -78,6 +78,7 @@
 		84D99421243200F90090D109 /* AltBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D99420243200F90090D109 /* AltBeaconController.m */; };
 		84D99425243226640090D109 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D99424243226640090D109 /* LaunchScreen.storyboard */; };
 		84D99428243226950090D109 /* logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 84D99427243226940090D109 /* logo_small.png */; };
+		84D9942B24322F670090D109 /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9942A24322F670090D109 /* UserSettings.m */; };
 		A87A00261BECD4FF0011F8A1 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A87A00251BECD4FF0011F8A1 /* libicucore.tbd */; };
 		A8B210551B84A0940016C911 /* wheel_bg_transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */; };
 		A8C71D711B83234200D32001 /* NearbyPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C71D701B83234200D32001 /* NearbyPeersViewController.m */; };
@@ -225,6 +226,8 @@
 		84D99420243200F90090D109 /* AltBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltBeaconController.m; sourceTree = "<group>"; };
 		84D99424243226640090D109 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84D99427243226940090D109 /* logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_small.png; sourceTree = "<group>"; };
+		84D9942924322F670090D109 /* UserSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
+		84D9942A24322F670090D109 /* UserSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
 		A80F92F81B97197400DC0756 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A87A00251BECD4FF0011F8A1 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		A8B210541B84A0940016C911 /* wheel_bg_transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel_bg_transparent@2x.png"; sourceTree = "<group>"; };
@@ -426,6 +429,8 @@
 				84D993B32430051E0090D109 /* GeneratedToken.m */,
 				84D993D12430D7510090D109 /* ProximityEvent.h */,
 				84D993D22430D7510090D109 /* ProximityEvent.m */,
+				84D9942924322F670090D109 /* UserSettings.h */,
+				84D9942A24322F670090D109 /* UserSettings.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				84D9939D242F94150090D109 /* BCVideoPreviewView.m in Sources */,
 				A8C71D941B8326C300D32001 /* JCRotateGestureRecognizer.m in Sources */,
 				84D993A6242FA3590090D109 /* CryptoHelper.m in Sources */,
+				84D9942B24322F670090D109 /* UserSettings.m in Sources */,
 				84D9941B243200AD0090D109 /* GCDUtilities.m in Sources */,
 				84D993C92430CAAE0090D109 /* RESTClient.m in Sources */,
 				84D99416243200AD0090D109 /* CLBeacon+Ext.m in Sources */,
